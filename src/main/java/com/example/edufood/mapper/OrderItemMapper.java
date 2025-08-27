@@ -7,7 +7,7 @@ import com.example.edufood.model.Order;
 import com.example.edufood.model.OrderItem;
 
 public class OrderItemMapper {
-    public static OrderItem toEntity(OrderItemRequestDto dto, Order order, Dish dish) {
+    public static OrderItem fromDto(OrderItemRequestDto dto, Order order, Dish dish) {
         OrderItem orderItem = new OrderItem();
         orderItem.setOrder(order);
         orderItem.setDish(dish);
@@ -15,12 +15,12 @@ public class OrderItemMapper {
         return orderItem;
     }
 
-    public static OrderItemResponseDto toDto(OrderItem entity) {
+    public static OrderItemResponseDto toDto(OrderItem orderItem) {
         OrderItemResponseDto dto = new OrderItemResponseDto();
-        dto.setId(entity.getId());
-        dto.setOrderId(entity.getOrder() != null ? entity.getOrder().getId() : null);
-        dto.setDishId(entity.getDish() != null ? entity.getDish().getId() : null);
-        dto.setQuantity(entity.getQuantity());
+        dto.setId(orderItem.getId());
+        dto.setOrderId(orderItem.getOrder() != null ? orderItem.getOrder().getId() : null);
+        dto.setDishId(orderItem.getDish() != null ? orderItem.getDish().getId() : null);
+        dto.setQuantity(orderItem.getQuantity());
         return dto;
     }
 }

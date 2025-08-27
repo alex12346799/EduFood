@@ -25,26 +25,27 @@ public class User implements UserDetails {
     @Column(unique = true, nullable = false)
     private String email;
 
-    private  String password;
+    private String password;
     private boolean enabled;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
-   private Role role;
+    private Role role;
 
 
-   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-   private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.getName()));
     }
 
-  @Override
+    @Override
     public String getUsername() {
         return email;
-  }
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -54,6 +55,7 @@ public class User implements UserDetails {
     public boolean isAccountNonLocked() {
         return true;
     }
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;

@@ -5,7 +5,7 @@ import com.example.edufood.dto.UserResponseDto;
 
 public interface UserService {
     UserResponseDto register(UserRequestDto dto);
-    UserResponseDto login(UserRequestDto userRequestDto);
+    UserResponseDto login(String email, String password);
     UserResponseDto getById(Long id);
-    UserResponseDto getByemail(String email);
+    UserResponseDto getByEmail(String email);
 }

@@ -7,19 +7,19 @@ import com.example.edufood.model.Restaurant;
 import com.example.edufood.model.User;
 
 public class OrderMapper {
-    public static Order toEntity(OrderRequestDto dto, User user, Restaurant restaurant) {
+    public static Order fromDto(OrderRequestDto dto, User user, Restaurant restaurant) {
         Order order = new Order();
         order.setUser(user);
         order.setRestaurant(restaurant);
         order.setStatus("NEW");
         return order;
     }
-    public static OrderResponseDto toDto(Order entity) {
+    public static OrderResponseDto toDto(Order order) {
         OrderResponseDto dto = new OrderResponseDto();
-        dto.setId(entity.getId());
-        dto.setStatus(entity.getStatus());
-        dto.setUserId(entity.getUser() != null ? entity.getUser().getId() : null);
-        dto.setRestaurantId(entity.getRestaurant() != null ? entity.getRestaurant().getId() : null);
+        dto.setId(order.getId());
+        dto.setStatus(order.getStatus());
+        dto.setUserId(order.getUser() != null ? order.getUser().getId() : null);
+        dto.setRestaurantId(order.getRestaurant() != null ? order.getRestaurant().getId() : null);
         return dto;
     }
 }

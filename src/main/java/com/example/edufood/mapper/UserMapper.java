@@ -5,7 +5,7 @@ import com.example.edufood.dto.UserResponseDto;
 import com.example.edufood.model.User;
 
 public class UserMapper {
-    public static User toEntity(UserRequestDto dto) {
+    public static User fromDto(UserRequestDto dto) {
         User user = new User();
         user.setName(dto.getName());
         user.setEmail(dto.getEmail());
@@ -13,11 +13,11 @@ public class UserMapper {
         return user;
     }
 
-    public static UserResponseDto toDto(User entity) {
+    public static UserResponseDto toDto(User user) {
         UserResponseDto dto = new UserResponseDto();
-        dto.setId(entity.getId());
-        dto.setName(entity.getName());
-        dto.setEmail(entity.getEmail());
+        dto.setId(user.getId());
+        dto.setName(user.getName());
+        dto.setEmail(user.getEmail());
         return dto;
     }
 }
