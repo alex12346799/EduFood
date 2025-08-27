@@ -22,7 +22,7 @@ public class Dish {
     private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
-    private Restaurnt restaurant;
+    private Restaurant restaurant;
 
     @OneToMany(mappedBy = "dish", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
