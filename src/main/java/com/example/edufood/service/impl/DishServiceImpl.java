@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -18,5 +20,10 @@ public class DishServiceImpl implements DishService {
     public Dish getById(Long id) {
         return dishRepository.findById(id)
                 .orElseThrow(()->new NotFoundException("Блюдо не найдено"));
+    }
+
+    @Override
+    public List<Dish> getDishesByRestaurant(Long restaurantId) {
+        return dishRepository.findByRestaurantId(restaurantId);
     }
 }

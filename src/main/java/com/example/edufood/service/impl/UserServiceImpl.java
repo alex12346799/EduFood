@@ -29,6 +29,9 @@ public class UserServiceImpl implements UserService {
         if (dto.getName() == null || dto.getName().isEmpty()) {
             throw new NotFoundException("Имя обязательно");
         }
+        if (dto.getSurname() == null || dto.getSurname().isEmpty()) {
+            throw new NotFoundException("Фамилия обязательно");
+        }
         if (dto.getEmail() == null || dto.getEmail().isEmpty()) {
             throw new NotFoundException("Email  обязательно");
         }

@@ -8,14 +8,31 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class RestaurantServiceImpl implements RestaurantService {
     private final RestaurantRepository restaurantRepository;
+
     @Override
     public Restaurant getById(Long id) {
         return restaurantRepository.findById(id)
-                .orElseThrow(()->new NotFoundException("Заведение не найдено"));
+                .orElseThrow(() -> new NotFoundException("Заведение не найдено"));
     }
+
+    @Override
+    public List<Restaurant> getRestaurants(String query) {
+        if (query != null && !query.isEmpty()) {
+            return restaurantRepository.findByNameContainingIgnoreCase(query);
+        }
+        return restaurantRepository.findAll();
+    }
+
+    @Override
+    public List<Restaurant> findAll() {
+        return restaurantRepository.findAll();
+    }
+
 }

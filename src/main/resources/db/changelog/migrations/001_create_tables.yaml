@@ -37,6 +37,9 @@ databaseChangeLog:
                   name: name
                   type: varchar(55)
               - column:
+                  name: surname
+                  type: varchar(55)
+              - column:
                   name: email
                   type: varchar(100)
                   constraints:

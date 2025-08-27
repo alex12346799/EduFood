@@ -2,9 +2,9 @@ INSERT INTO roles (name)
 VALUES ('ROLE_USER'),
        ('ROLE_ADMIN');
 
-INSERT INTO users (name, email, password, enabled, role_id)
-VALUES ('Admin', 'admin@edufood.com', 'admin123', true, 2),
-       ('Ivan', 'ivan@example.com', 'user123', true, 1);
+INSERT INTO users (name, surname  ,email, password, enabled, role_id)
+VALUES ('Admin','Kim' ,'admin@edufood.com', 'admin123', true, 2),
+       ('Ivan', 'Lee','ivan@example.com', 'user123', true, 1);
 
 INSERT INTO restaurants (id, name, address)
 VALUES (1, 'Pizza Roma', 'ул. Ленина, 1'),
