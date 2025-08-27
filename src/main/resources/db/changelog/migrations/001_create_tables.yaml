@@ -121,12 +121,23 @@ databaseChangeLog:
                   name: create_time
                   type: timestamp
               - column:
+                  name: status
+                  type: varchar(45)
+                  defaultValue: 'NEW'
+              - column:
                   name: user_id
                   type: bigint
                   constraints:
                     nullable: false
                     foreignKeyName: fk_orders_users
                     references: users(id)
+              - column:
+                  name: restaurant_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_orders_restaurants
+                    references: restaurants(id)
   - changeSet:
       id: create_table_order_items
       author: aleksei

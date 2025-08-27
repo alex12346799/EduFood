@@ -16,8 +16,13 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "create_time")
     private LocalDateTime createTime;
+    private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
