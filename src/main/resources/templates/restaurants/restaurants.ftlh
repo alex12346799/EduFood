@@ -1,35 +1,10 @@
-<#--<div class="container mt-4">-->
-<#--    <h2 class="mb-3">Рестораны</h2>-->
-
-<#--    <!-- Поиск &ndash;&gt;-->
-<#--    <form method="get" class="mb-3 d-flex">-->
-<#--        <input type="text" class="form-control me-2" name="query"-->
-<#--               placeholder="Поиск ресторана"-->
-<#--               value="${query!}">-->
-<#--        <button type="submit" class="btn btn-primary">Поиск</button>-->
-<#--    </form>-->
-
-<#--    <!-- Список ресторанов &ndash;&gt;-->
-<#--    <div class="list-group">-->
-<#--        <#if restaurants??&& (restaurants?size > 0)>-->
-<#--            <#list restaurants as restaurant>-->
-<#--                <a href="/restaurant/${restaurant.id}/dishes"-->
-<#--                   class="list-group-item list-group-item-action">-->
-<#--                    <h5 class="mb-1">${restaurant.name}</h5>-->
-<#--                    <p class="mb-1 text-muted">${restaurant.address!''}</p>-->
-<#--                </a>-->
-<#--            </#list>-->
-<#--        <#else>-->
-<#--            <p class="text-muted">Рестораны не найдены.</p>-->
-<#--        </#if>-->
-<#--    </div>-->
-<#--</div>-->
 <#import "../layout.ftlh" as main>
+<#import "../pages/pages.ftlh" as p>
 <@main.layout>
     <div class="container mt-5">
         <h2 class="mb-4 text-center">Наши рестораны</h2>
 
-        <!-- Поиск -->
+
         <form method="get" class="mb-5 d-flex justify-content-center">
             <input type="text" class="form-control w-50 me-2" name="query"
                    placeholder="Поиск ресторана"
@@ -37,15 +12,17 @@
             <button type="submit" class="btn btn-primary">Поиск</button>
         </form>
 
-        <!-- Горизонтальный список карточек -->
+        <@p.pager url page/>
         <#if restaurants?? && (restaurants?size > 0)>
             <div class="row g-4">
                 <#list restaurants as restaurant>
                     <div class="col-md-3">
                         <div class="card shadow-sm h-100 border-0 rounded-4 restaurant-card">
+
                             <img src="${restaurant.imageUrl!'/images/default-restaurant.jpg'}"
                                  class="card-img-top rounded-top-4"
                                  alt="${restaurant.name}">
+
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">${restaurant.name}</h5>
                                 <p class="card-text text-muted mb-4">${restaurant.address!''}</p>

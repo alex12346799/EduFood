@@ -42,7 +42,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(
                         authorize -> authorize
-//                                .requestMatchers(HttpMethod.GET, "/vacancies").hasAnyAuthority("EMPLOYEE", "APPLICANT")
+                                .requestMatchers("/cart/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
 //                                .requestMatchers("/vacancies/create").hasAuthority("EMPLOYEE")
 //                                .requestMatchers(HttpMethod.GET, "/resumes").hasAnyAuthority("EMPLOYEE", "APPLICANT")
 //                                .requestMatchers("/resumes/create").hasAuthority("APPLICANT")

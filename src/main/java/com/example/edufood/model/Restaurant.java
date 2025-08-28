@@ -19,6 +19,8 @@ public class Restaurant {
     private String name;
     private String address;
 
+    private String imageUrl;
+
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Dish> dishes = new ArrayList<>();
 }

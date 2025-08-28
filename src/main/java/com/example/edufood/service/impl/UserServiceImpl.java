@@ -11,6 +11,8 @@ import com.example.edufood.repository.UserRepository;
 import com.example.edufood.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -79,5 +81,17 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email)
                 .map(UserMapper::toDto)
                 .orElseThrow(() -> new NotFoundException("Пользователь с email " + email + " не найден"));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        var user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                user.getAuthorities()
+
+        );
     }
 }
