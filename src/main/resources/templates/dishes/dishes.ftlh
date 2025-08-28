@@ -1,45 +1,77 @@
+
 <#import "../layout.ftlh" as main>
 
 <@main.layout>
-    <h2 class="text-center my-3">Список блюд</h2>
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Меню</h2>
+        <h4 class="text-muted mb-4">${restaurant.name}</h4>
 
-    <table class="table table-striped table-bordered text-center">
-        <thead class="table-dark">
-        <tr>
-            <th>ID</th>
-            <th>Название</th>
-            <th>Цена</th>
-            <th>Ресторан</th>
-            <th>Действия</th>
-        </tr>
-        </thead>
-        <tbody>
-        <#list dishes as dish>
-            <tr>
+        <#if dishes?? && (dishes?size > 0)>
+            <div class="row g-4">
+                <#list dishes as dish>
+                    <div class="col-md-3">
+                        <div class="card shadow-sm h-100 border-0 rounded-4 dish-card">
 
-                <td>${dish.id}</td>
-                <td>${dish.name}</td>
-                <#--                <td>${dish.description}</td>-->
-                <td>${dish.price} сом</td>
-                <td>${dish.restaurant.name}</td>
-                <td>
-                    <form action="/cart/add/${dish.id}" method="post" class="d-inline">
-                        <#if _csrf??>
-                            <input
-                                    type="hidden"
-                                    name="${(_csrf.parameterName)!'csrf-param-name'}"
-                                    value="${(_csrf.token)!'csrf-token'}"/>
-                        </#if>
-                        <input type="number" name="quantity" value="1" min="1" class="form-control d-inline w-25">
-                        <button type="submit" class="btn btn-success btn-sm">Добавить в корзину</button>
-                    </form>
+                            <!-- Фото блюда -->
+                            <img src="${dish.imageUrl!'/images/default-dish.jpg'}"
+                                 class="card-img-top rounded-top-4"
+                                 alt="${dish.name}">
 
-                    <a href="/dishes/edit/${dish.id}" class="btn btn-sm btn-primary">✏ Редактировать</a>
-                    <a href="/dishes/delete/${dish.id}" class="btn btn-sm btn-danger">🗑 Удалить</a>
-                </td>
-            </tr>
-        </#list>
-        </tbody>
-    </table>
+                            <div class="card-body d-flex flex-column">
+                                <!-- Название блюда -->
+                                <h5 class="card-title">${dish.name}</h5>
+                                <!-- Название ресторана -->
+                                <p class="text-muted mb-2">${dish.restaurant.name}</p>
+                                <!-- Цена -->
+                                <p class="mb-3 fw-bold">${dish.price} сом</p>
 
+                                <!-- Форма добавления в корзину -->
+                                <form action="/cart/add/${dish.id}" method="post" class="d-flex gap-2 mt-auto">
+                                    <#if _csrf??>
+                                        <input type="hidden"
+                                               name="${(_csrf.parameterName)!'csrf-param-name'}"
+                                               value="${(_csrf.token)!'csrf-token'}"/>
+                                    </#if>
+                                    <input type="number" name="quantity" value="1" min="1" class="form-control w-50">
+                                    <button type="submit" class="btn btn-success flex-grow-1">Добавить</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </#list>
+            </div>
+        <#else>
+            <p class="text-muted text-center">Блюда не найдены.</p>
+        </#if>
+    </div>
+
+    <style>
+        .dish-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .dish-card img {
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .btn-success {
+            border-radius: 30px;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.9rem;
+        }
+    </style>
 </@main.layout>

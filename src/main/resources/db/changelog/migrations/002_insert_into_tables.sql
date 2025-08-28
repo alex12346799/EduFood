@@ -6,27 +6,27 @@ INSERT INTO users (name, surname  ,email, password, enabled, role_id)
 VALUES ('Admin','Kim' ,'admin@edufood.com', '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', true, 2),
        ('Ivan', 'Lee','ivan@example.com', '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', true, 1);
 
-INSERT INTO restaurants (id, name, address)
-VALUES (1, 'Pizza Roma', 'ул. Ленина, 1'),
-       (2, 'Tokyo Sushi', 'ул. Советская, 2'),
-       (3, 'Burger King Street', 'ул. Горького, 3'),
-       (4, 'Green Vegan', 'ул. Кирова, 4'),
-       (5, 'Texas Steakhouse', 'ул. Ахунбаева, 5'),
-       (6, 'Pasta Bella', 'ул. Московская, 6'),
-       (7, 'BBQ Smokehouse', 'ул. Фрунзе, 7'),
-       (8, 'Ocean Seafood', 'ул. Боконбаева, 8'),
-       (9, 'Fast&Fresh', 'ул. Панфилова, 9'),
-       (10, 'Sweet Dreams', 'ул. Токтогула, 10'),
-       (11, 'Georgian Taste', 'ул. Абдымомунова, 11'),
-       (12, 'French Bistro', 'ул. Киевская, 12'),
-       (13, 'Doner House', 'ул. Ибраимова, 13'),
-       (14, 'Indian Curry', 'ул. Жибек Жолу, 14'),
-       (15, 'Mexican Fiesta', 'ул. Чуйская, 15'),
-       (16, 'Uzbek Plov Center', 'ул. Байтик Баатыра, 16'),
-       (17, 'Chinese Dragon', 'ул. Алма-Атинская, 17'),
-       (18, 'Turkish Grill', 'ул. Байтик Баатыра, 18'),
-       (19, 'Shashlik Master', 'ул. Тыныстанова, 19'),
-       (20, 'Cafe Central Asia', 'ул. Раззакова, 20');
+INSERT INTO restaurants (id, name, address, image_url)
+VALUES (1, 'Pizza Roma', 'ул. Ленина, 1', '/images/restaurants/restaurant1.jpg'),
+       (2, 'Tokyo Sushi', 'ул. Советская, 2', '/images/restaurants/restaurant2.jpg'),
+       (3, 'Burger King Street', 'ул. Горького, 3', '/images/restaurants/restaurant3.jpg'),
+       (4, 'Green Vegan', 'ул. Кирова, 4', '/images/restaurants/restaurant4.jpg'),
+       (5, 'Texas Steakhouse', 'ул. Ахунбаева, 5', '/images/restaurants/restaurant5.jpg'),
+       (6, 'Pasta Bella', 'ул. Московская, 6', '/images/restaurants/restaurant6.jpg'),
+       (7, 'BBQ Smokehouse', 'ул. Фрунзе, 7', '/images/restaurants/restaurant7.jpg'),
+       (8, 'Ocean Seafood', 'ул. Боконбаева, 8', '/images/restaurants/restaurant8.jpg'),
+       (9, 'Fast&Fresh', 'ул. Панфилова, 9', '/images/restaurants/restaurant9.jpg'),
+       (10, 'Sweet Dreams', 'ул. Токтогула, 10', '/images/restaurants/restaurant10.jpg'),
+       (11, 'Georgian Taste', 'ул. Абдымомунова, 11', '/images/restaurants/restaurant11.jpg'),
+       (12, 'French Bistro', 'ул. Киевская, 12', '/images/restaurants/restaurant12.jpg'),
+       (13, 'Doner House', 'ул. Ибраимова, 13', '/images/restaurants/restaurant13.jpg'),
+       (14, 'Indian Curry', 'ул. Жибек Жолу, 14', '/images/restaurants/restaurant14.jpg'),
+       (15, 'Mexican Fiesta', 'ул. Чуйская, 15', '/images/restaurants/restaurant15.jpg'),
+       (16, 'Uzbek Plov Center', 'ул. Байтик Баатыра, 16', '/images/restaurants/restaurant16.jpg'),
+       (17, 'Chinese Dragon', 'ул. Алма-Атинская, 17', '/images/restaurants/restaurant17.jpg'),
+       (18, 'Turkish Grill', 'ул. Байтик Баатыра, 18', '/images/restaurants/restaurant18.jpg'),
+       (19, 'Shashlik Master', 'ул. Тыныстанова, 19', '/images/restaurants/restaurant19.jpg'),
+       (20, 'Cafe Central Asia', 'ул. Раззакова, 20', '/images/restaurants/restaurant20.jpg');
 
 INSERT INTO dishes (name, price, restaurant_id)
 VALUES ('Маргарита', 450, 1),

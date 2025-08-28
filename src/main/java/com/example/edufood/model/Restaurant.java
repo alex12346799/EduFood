@@ -19,6 +19,7 @@ public class Restaurant {
     private String name;
     private String address;
 
+    @Column(name = "image_url")
     private String imageUrl;
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)

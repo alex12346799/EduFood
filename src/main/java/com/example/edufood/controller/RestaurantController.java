@@ -25,7 +25,7 @@ public String restaurants(@RequestParam(required = false) String query, Model mo
                           @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
 
     Page<Restaurant> page = restaurantService.getRestaurants(query, pageable);
-
+    page.getContent().forEach(r -> System.out.println(r.getImageUrl()));
     model.addAttribute("page", page);
     model.addAttribute("restaurants", page.getContent());
     model.addAttribute("url", "/restaurants");
