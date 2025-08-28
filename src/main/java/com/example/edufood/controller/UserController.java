@@ -14,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.View;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
     private final UserService userService;
     private final OrderService orderService;
+    private final View error;
 
     @GetMapping("/register")
     public String register(Model model) {
@@ -39,7 +42,8 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model, @RequestParam(defaultValue = "false") boolean error) {
+        model.addAttribute("error", error);
         return "users/login";
     }
 

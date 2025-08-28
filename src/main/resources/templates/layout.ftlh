@@ -35,14 +35,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/auth/profile">Личный кабинет</a>
                     </li>
+<#--                    <li class="nav-item">-->
+<#--                        <a class="nav-link" href="/auth/profileAdmin">Меню</a>-->
+<#--                    </li>-->
                     <li class="nav-item">
-                        <a class="nav-link" href="/auth/profileAdmin">1213</a>
+                        <a class="nav-link" href="/restaurant/2/dishes">Меню</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/restaurants">Заведение</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/resumes/create">Создать резюме</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/vacancies/create">Создать вакансию</a>
+                        <a class="nav-link" href="/restaurant/1">Создать вакансию</a>
                     </li>
 
                     <li class="nav-item">
@@ -88,10 +92,14 @@
                     </form>
                 </#if>
             <#else>
-                <a href="/login"
-                   class="btn btn-outline-info m-2">Login</a>
-                <a href="/register"
-                   class="btn btn-outline-info m-2">Register</a>
+<#--                <a href="user/login"-->
+<#--                   class="btn btn-outline-info m-2">Login</a>-->
+<#--                <a href="user/register"-->
+<#--                   class="btn btn-outline-info m-2">Register</a>-->
+
+                <a href="/user/login" class="btn btn-outline-info m-2">Login</a>
+                <a href="/user/register" class="btn btn-outline-info m-2">Register</a>
+
             </#if>
 
         </div>

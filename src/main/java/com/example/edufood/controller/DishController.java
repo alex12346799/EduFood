@@ -24,6 +24,6 @@ public class DishController {
         List<Dish> dishes = dishService.getDishesByRestaurant(restaurant.getId());
         model.addAttribute("restaurant", restaurant);
         model.addAttribute("dishes", dishes);
-        return "dishes/dishesList";
+        return "dishes/dishes";
     }
 }

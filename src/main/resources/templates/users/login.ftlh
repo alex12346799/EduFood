@@ -17,6 +17,7 @@
                         <form id="login-form" action="/login" method="post">
 
                             <#if _csrf??>
+
                                 <input
                                         type="hidden"
                                         name="${(_csrf.parameterName)!'csrf-param-name'}"

@@ -1,6 +1,6 @@
 #FileLock
-#Wed Aug 27 22:52:32 GMT+06:00 2025
-hostName=macbookair
-id=198ec71fd29ebb110ee69e67693a627a066e183be78
+#Thu Aug 28 14:29:16 GMT+06:00 2025
+hostName=192.168.0.251
+id=198efcba17e3437be0bb87b325be50416a6c0b71d3f
 method=file
-server=192.168.50.64\:58236
+server=192.168.0.251\:59894

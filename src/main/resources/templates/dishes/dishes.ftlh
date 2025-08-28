@@ -1,23 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Блюда ресторана</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="p-3">
+<#import "../layout.ftlh" as main>
 
-<h2>Блюда ресторана: ${restaurant.name}</h2>
+<@main.layout>
+    <h2 class="text-center my-3">Список блюд</h2>
 
-<div class="list-group">
-    <#list dishes as dish>
-        <div class="list-group-item">
-            <strong>${dish.name}</strong> — ${dish.price} сом
-        </div>
-    </#list>
-</div>
+    <table class="table table-striped table-bordered text-center">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+<#--            <th>Описание</th>-->
+            <th>Цена</th>
+            <th>Ресторан</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <#list dishes as dish>
+            <tr>
 
-<a href="/restaurants" class="btn btn-secondary mt-3">Назад к ресторанам</a>
+                <td>${dish.id}</td>
+                <td>${dish.name}</td>
+<#--                <td>${dish.description}</td>-->
+                <td>${dish.price} сом</td>
+                <td>${dish.restaurant.name}</td>
+                <td>
+                    <a href="/dishes/edit/${dish.id}" class="btn btn-sm btn-primary">✏ Редактировать</a>
+                    <a href="/dishes/delete/${dish.id}" class="btn btn-sm btn-danger">🗑 Удалить</a>
+                </td>
+            </tr>
+        </#list>
+        </tbody>
+    </table>
 
-</body>
-</html>
+    <a href="/dishes/add" class="btn btn-success mt-3">➕ Добавить блюдо</a>
+</@main.layout>
