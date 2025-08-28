@@ -3,8 +3,8 @@ VALUES ('ROLE_USER'),
        ('ROLE_ADMIN');
 
 INSERT INTO users (name, surname  ,email, password, enabled, role_id)
-VALUES ('Admin','Kim' ,'admin@edufood.com', 'admin123', true, 2),
-       ('Ivan', 'Lee','ivan@example.com', 'user123', true, 1);
+VALUES ('Admin','Kim' ,'admin@edufood.com', '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', true, 2),
+       ('Ivan', 'Lee','ivan@example.com', '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', true, 1);
 
 INSERT INTO restaurants (id, name, address)
 VALUES (1, 'Pizza Roma', 'ул. Ленина, 1'),

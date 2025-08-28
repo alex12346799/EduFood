@@ -33,8 +33,6 @@ public class SecurityConfig {
                         .successHandler((request, response, authentication) -> {
                             redirectHelper.redirectByRole(authentication.getAuthorities(), response);
                         })
-
-
                         .permitAll()
                 )
                 .logout(logout -> logout
@@ -44,10 +42,10 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(
                         authorize -> authorize
-                                .requestMatchers(HttpMethod.GET, "/vacancies").hasAnyAuthority("EMPLOYEE", "APPLICANT")
-                                .requestMatchers("/vacancies/create").hasAuthority("EMPLOYEE")
-                                .requestMatchers(HttpMethod.GET, "/resumes").hasAnyAuthority("EMPLOYEE", "APPLICANT")
-                                .requestMatchers("/resumes/create").hasAuthority("APPLICANT")
+//                                .requestMatchers(HttpMethod.GET, "/vacancies").hasAnyAuthority("EMPLOYEE", "APPLICANT")
+//                                .requestMatchers("/vacancies/create").hasAuthority("EMPLOYEE")
+//                                .requestMatchers(HttpMethod.GET, "/resumes").hasAnyAuthority("EMPLOYEE", "APPLICANT")
+//                                .requestMatchers("/resumes/create").hasAuthority("APPLICANT")
                                 .anyRequest().permitAll()
                 );
         return http.build();
