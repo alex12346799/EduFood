@@ -22,7 +22,7 @@ public class RestaurantController {
 
 @GetMapping("/restaurants")
 public String restaurants(@RequestParam(required = false) String query, Model model,
-                          @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
+                          @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
 
     Page<Restaurant> page = restaurantService.getRestaurants(query, pageable);
     page.getContent().forEach(r -> System.out.println(r.getImageUrl()));

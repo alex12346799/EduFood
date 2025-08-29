@@ -12,4 +12,6 @@ public class AuthController     {
         model.addAttribute("error", error);
         return "users/login";
     }
+
+
 }

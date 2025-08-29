@@ -6,70 +6,56 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/cart")
+@RequestMapping("cart")
+@Slf4j
 public class CartController {
     private final DishService dishService;
     private final ObjectMapper mapper;
 
     @PostMapping("/add/{dishId}")
-    public String addToCart (@PathVariable Long dishId, @CookieValue(defaultValue = "{}") String cartCookie,
-                             @RequestParam (defaultValue = "1") int quantity, HttpServletResponse response) throws JsonProcessingException {
-        Map<Long, Integer> cart;
-        try{
-            cart = mapper.readValue(cartCookie, new TypeReference<>() {});
-        }catch (Exception e){
-            cart = new HashMap<>();
+    public String addToCart(@PathVariable Long dishId,
+                            @RequestParam(defaultValue = "1") int quantity,
+                            HttpServletRequest request) {
+        Map<Long, Integer> cart = getCart(request);
+
+        int newQuantity = cart.getOrDefault(dishId, 0) + quantity;
+        if (newQuantity > 0) {
+            cart.put(dishId, newQuantity);
+        } else {
+            cart.remove(dishId);
         }
-        cart.put(dishId, cart.getOrDefault(dishId, 0) + quantity);
-        Cookie cookie = new Cookie("cart", mapper.writeValueAsString(cart));
-        cookie.setPath("/");
-        cookie.setMaxAge(60 * 60 * 24);
-        response.addCookie(cookie);
-        return "redirect:/restaurant/" + dishService.getById(dishId).getRestaurant().getId()+"/dishes/dishes";
+
+        request.getSession().setAttribute("cart", cart);
+        return "redirect:/cart";
     }
 
-
-//    @GetMapping
-//    public String viewCart(@CookieValue(value = "cart", defaultValue = "{}") String cartCookie,
-//                           Model model) {
-//        Map<Long, Integer> cart;
-//        try {
-//            cart = mapper.readValue(cartCookie, new TypeReference<>() {});
-//        } catch (Exception e) {
-//            cart = new HashMap<>();
-//        }
-//
-//        Map<Dish, Integer> dishesInCart = new HashMap<>();
-//        cart.forEach((dishId, quantity) -> {
-//            Dish dish = dishService.getById(dishId);
-//            dishesInCart.put(dish, quantity);
-//        });
-//
-//        model.addAttribute("dishesInCart", dishesInCart);
-//        return "cart/cart";
-//    }
+    @PostMapping("/remove/{dishId}")
+    public String removeFromCart(@PathVariable Long dishId, HttpServletRequest request) {
+        Map<Long, Integer> cart = getCart(request);
+        cart.remove(dishId);
+        request.getSession().setAttribute("cart", cart);
+        return "redirect:/cart";
+    }
 
     @GetMapping
-    public String viewCart(@CookieValue(value = "cart", defaultValue = "{}") String cartCookie,
-                           Model model) {
-        Map<Long, Integer> cart;
-        try {
-            cart = mapper.readValue(cartCookie, new TypeReference<>() {});
-        } catch (Exception e) {
-            cart = new HashMap<>();
-        }
+    public String viewCart(HttpServletRequest request, Model model) {
+        Map<Long, Integer> cart = getCart(request);
 
         Map<Dish, Integer> dishesInCart = new HashMap<>();
         BigDecimal totalPrice = BigDecimal.ZERO;
@@ -78,7 +64,9 @@ public class CartController {
             Dish dish = dishService.getById(entry.getKey());
             int quantity = entry.getValue();
             dishesInCart.put(dish, quantity);
-            totalPrice = totalPrice.add(dish.getPrice().multiply(BigDecimal.valueOf(quantity)));
+            if (dish.getPrice() != null) {
+                totalPrice = totalPrice.add(dish.getPrice().multiply(BigDecimal.valueOf(quantity)));
+            }
         }
 
         model.addAttribute("dishesInCart", dishesInCart);
@@ -87,24 +75,18 @@ public class CartController {
     }
 
 
-    @PostMapping("/remove/{dishId}")
-    public String removeFromCart(@PathVariable Long dishId,
-                                 @CookieValue(value = "cart", defaultValue = "{}") String cartCookie,
-                                 HttpServletResponse response) throws JsonProcessingException {
-        Map<Long, Integer> cart;
-        try {
-            cart = mapper.readValue(cartCookie, new TypeReference<>() {});
-        } catch (Exception e) {
-            cart = new HashMap<>();
+    private Map<Long, Integer> getCart(HttpServletRequest request) {
+        Object sessionCart = request.getSession().getAttribute("cart");
+        Map<Long, Integer> cart = new HashMap<>();
+        if (sessionCart instanceof Map<?, ?> map) {
+            for (Map.Entry<?, ?> entry : map.entrySet()) {
+                if (entry.getKey() instanceof Long key && entry.getValue() instanceof Integer value) {
+                    cart.put(key, value);
+                }
+            }
         }
-
-        cart.remove(dishId);
-
-        Cookie cookie = new Cookie("cart", mapper.writeValueAsString(cart));
-        cookie.setPath("/");
-        cookie.setMaxAge(7 * 24 * 60 * 60);
-        response.addCookie(cookie);
-
-        return "redirect:/cart";
+        return cart;
     }
+
+
 }

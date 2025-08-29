@@ -17,6 +17,9 @@ public class Dish {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     private String name;
     @Column(precision = 10, scale = 2)
     private BigDecimal price;

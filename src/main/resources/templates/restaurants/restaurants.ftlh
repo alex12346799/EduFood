@@ -19,14 +19,7 @@
                     <div class="col-md-3">
                         <div class="card shadow-sm h-100 border-0 rounded-4 restaurant-card">
 
-                            <#--                            <img src="${restaurant.imageUrl!'/images/default-restaurant.jpg'}"-->
-                            <#--                                 class="card-img-top rounded-top-4"-->
-                            <#--                                 alt="${restaurant.name}">-->
 
-<#--                            <img src="/static/images/restaurants/restaurant3.jpg"-->
-<#--                                 class="card-img-top"-->
-<#--                                 alt="${restaurant.name}"-->
-<#--                                 style="height: 200px; object-fit: cover;">-->
 
                             <img src="${restaurant.imageUrl}" alt="Фото ресторана" class="card-img-top">
 

@@ -3,10 +3,11 @@ package com.example.edufood.service.impl;
 import com.example.edufood.exceptions.NotFoundException;
 import com.example.edufood.model.Dish;
 import com.example.edufood.repository.DishRepository;
-import com.example.edufood.repository.RestaurantRepository;
 import com.example.edufood.service.DishService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +23,11 @@ public class DishServiceImpl implements DishService {
                 .orElseThrow(()->new NotFoundException("Блюдо не найдено"));
     }
 
+
+
+
     @Override
-    public List<Dish> getDishesByRestaurant(Long restaurantId) {
-        return dishRepository.findByRestaurantId(restaurantId);
+    public Page<Dish> getDishesByRestaurant(Long restaurantId, Pageable pageable) {
+        return dishRepository.findByRestaurantId(restaurantId, pageable);
     }
 }

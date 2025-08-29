@@ -1,3 +1,4 @@
+
 <#import "../layout.ftlh" as main>
 <@main.layout>
     <div class="container mt-4">
@@ -9,41 +10,68 @@
                 <tr>
                     <th>Блюдо</th>
                     <th>Заведение</th>
-                    <th>Количество</th>
+                    <th style="width: 200px;">Количество</th>
                     <th>Цена</th>
                     <th>Действие</th>
                 </tr>
                 </thead>
                 <tbody>
                 <#list dishesInCart?keys as dish>
-                    <tr>
-                        <td>${dish.name}</td>
-                        <td>${dish.restaurant.name}</td>
-                        <td>${dishesInCart[dish]}</td>
-                        <td>${dish.price * dishesInCart[dish]}</td>
-                        <td>
-                            <form action="/cart/remove/${dish.id}" method="post">
-                                <button class="btn btn-danger btn-sm">Удалить</button>
-                            </form>
-                        </td>
-                    </tr>
+                    <#if dish??>
+                        <tr>
+                            <td>${dish.name}</td>
+                            <td>${dish.restaurant.name}</td>
+                            <td>
+                                <!-- Кнопка уменьшить -->
+                                <form action="/cart/add/${dish.id}" method="post" style="display:inline;">
+                                    <#if _csrf??>
+                                        <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}"
+                                               value="${(_csrf.token)!'csrf-token'}"/>
+                                    </#if>
+                                    <input type="hidden" name="quantity" value="-1"/>
+                                    <button class="btn btn-warning btn-sm">-</button>
+                                </form>
+
+                                <span class="mx-2">${dishesInCart[dish]!0}</span>
+
+
+                                <!-- Кнопка увеличить -->
+                                <form action="/cart/add/${dish.id}" method="post" style="display:inline;">
+                                    <#if _csrf??>
+                                        <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}"
+                                               value="${(_csrf.token)!'csrf-token'}"/>
+                                    </#if>
+                                    <input type="hidden" name="quantity" value="1"/>
+                                    <button class="btn btn-primary btn-sm">+</button>
+                                </form>
+                            </td>
+                            <td>${(dish.price)} сом</td>
+                            <td>
+                                <form action="/cart/remove/${dish.id}" method="post">
+                                    <#if _csrf??>
+                                        <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}"
+                                               value="${(_csrf.token)!'csrf-token'}"/>
+                                    </#if>
+                                    <button class="btn btn-danger btn-sm">Удалить</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </#if>
                 </#list>
                 </tbody>
             </table>
 
-            <div>
+            <div class="mt-3">
                 <strong>Итог:</strong>
-                <span>${totalPrice}</span>
+                <span>${totalPrice?string(",##0.00")} сом</span>
             </div>
 
-            <form action="/orders/create" method="post">
+            <form action="/orders/create" method="post" class="mt-3">
                 <#if _csrf??>
-                    <input
-                            type="hidden"
-                            name="${(_csrf.parameterName)!'csrf-param-name'}"
-                            value="${(_csrf.token)!'csrf-token'}"/>
+                    <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}"
+                           value="${(_csrf.token)!'csrf-token'}"/>
                 </#if>
-                <button class="btn btn-success mt-3">Оформить заказ</button>
+                <button class="btn btn-success">Оформить заказ</button>
             </form>
         <#else>
             <p>Корзина пуста.</p>

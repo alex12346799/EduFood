@@ -28,39 +28,39 @@ VALUES (1, 'Pizza Roma', 'ул. Ленина, 1', '/images/restaurants/restauran
        (19, 'Shashlik Master', 'ул. Тыныстанова, 19', '/images/restaurants/restaurant19.jpg'),
        (20, 'Cafe Central Asia', 'ул. Раззакова, 20', '/images/restaurants/restaurant20.jpg');
 
-INSERT INTO dishes (name, price, restaurant_id)
-VALUES ('Маргарита', 450, 1),
-       ('Пепперони', 490, 1),
-       ('4 Сыра', 520, 1),
-       ('Гавайская', 500, 1),
-       ('Диабло', 530, 1),
-       ('Капричоза', 510, 1),
-       ('Вегетарианская', 470, 1),
-       ('Мясная', 550, 1),
-       ('Фунги', 480, 1),
-       ('Маринара', 460, 1),
-       ('Карбонара', 520, 1),
-       ('Кальцоне', 500, 1),
-       ('Прошутто', 540, 1),
-       ('Салями', 500, 1),
-       ('Бьянка', 480, 1);
+INSERT INTO dishes (name, price, restaurant_id, image_url)
+VALUES ('Маргарита', 450, 1,'/images/pizza/1.jpg'),
+       ('Пепперони', 490, 1,'/images/pizza/2.jpg'),
+       ('4 Сыра', 520, 1,'/images/pizza/3.jpg'),
+       ('Гавайская', 500, 1,'/images/pizza/4.jpg'),
+       ('Диабло', 530, 1,'/images/pizza/5.jpg'),
+       ('Капричоза', 510, 1,'/images/pizza/6.jpg'),
+       ('Вегетарианская', 470, 1,'/images/pizza/7.jpg'),
+       ('Мясная', 550, 1,'/images/pizza/8.jpg'),
+       ('Фунги', 480, 1,'/images/pizza/9.jpg'),
+       ('Маринара', 460, 1,'/images/pizza/10.jpg'),
+       ('Карбонара', 520, 1,'/images/pizza/11.jpg'),
+       ('Кальцоне', 500, 1,'/images/pizza/12.jpg'),
+       ('Прошутто', 540, 1,'/images/pizza/13.jpg'),
+       ('Салями', 500, 1,'/images/pizza/14.jpg'),
+       ('Бьянка', 480, 1,'/images/pizza/15.jpg');
 
-INSERT INTO dishes (name, price, restaurant_id)
-VALUES ('Филадельфия', 590, 2),
-       ('Калифорния', 560, 2),
-       ('Спайси тунец', 600, 2),
-       ('Эби ролл', 570, 2),
-       ('Сяке маки', 490, 2),
-       ('Унаги ролл', 650, 2),
-       ('Канада ролл', 620, 2),
-       ('Дракон', 660, 2),
-       ('Осака сет', 1200, 2),
-       ('Самурай сет', 1100, 2),
-       ('Мисо суп', 300, 2),
-       ('Суши лосось', 350, 2),
-       ('Суши тунец', 370, 2),
-       ('Темпура ролл', 590, 2),
-       ('Суши угорь', 390, 2);
+INSERT INTO dishes (name, price, restaurant_id, image_url)
+VALUES ('Филадельфия', 590, 2, '/images/sushi/1.jpg'),
+       ('Калифорния', 560, 2, '/images/sushi/2.jpg'),
+       ('Спайси тунец', 600, 2, '/images/sushi/3.jpg'),
+       ('Эби ролл', 570, 2, '/images/sushi/4.jpg'),
+       ('Сяке маки', 490, 2, '/images/sushi/5.jpg'),
+       ('Унаги ролл', 650, 2, '/images/sushi/6.jpg'),
+       ('Канада ролл', 620, 2, '/images/sushi/7.jpg'),
+       ('Дракон', 660, 2, '/images/sushi/8.jpg'),
+       ('Осака сет', 1200, 2, '/images/sushi/9.jpg'),
+       ('Самурай сет', 1100, 2, '/images/sushi/10.jpg'),
+       ('Мисо суп', 300, 2, '/images/sushi/11.jpg'),
+       ('Суши лосось', 350, 2, '/images/sushi/12.jpg'),
+       ('Суши тунец', 370, 2, '/images/sushi/13.jpg'),
+       ('Темпура ролл', 590, 2, '/images/sushi/14.jpg'),
+       ('Суши угорь', 390, 2, '/images/sushi/15.jpg');
 
 INSERT INTO dishes (name, price, restaurant_id)
 VALUES ('Чизбургер', 290, 3),

@@ -27,7 +27,7 @@
     <div class="auth-bg">
         <div class="auth-card">
             <h2>Регистрация</h2>
-            <form action="user/register" method="post">
+            <form action="/user/register" method="post">
                 <#if _csrf??>
                     <input
                             type="hidden"
@@ -63,8 +63,8 @@
                     <label for="role" class="form-label">Роль</label>
                     <select class="form-select" id="role" name="roleId">
                         <option value="" disabled selected>Выберите роль</option>
-                        <option value="1">EMPLOYEE</option>
-                        <option value="2">APPLICANT</option>
+                        <option value="1">USER</option>
+                        <option value="2">ADMIN</option>
                     </select>
                 </div>
 

@@ -1,9 +1,11 @@
 
 <#import "../layout.ftlh" as main>
+<#import "../pages/pages.ftlh" as p>
 
 <@main.layout>
     <div class="container mt-5">
         <h2 class="mb-4 text-center">Меню</h2>
+        <@p.pager url page/>
         <h4 class="text-muted mb-4">${restaurant.name}</h4>
 
         <#if dishes?? && (dishes?size > 0)>
@@ -28,9 +30,10 @@
                                 <!-- Форма добавления в корзину -->
                                 <form action="/cart/add/${dish.id}" method="post" class="d-flex gap-2 mt-auto">
                                     <#if _csrf??>
-                                        <input type="hidden"
-                                               name="${(_csrf.parameterName)!'csrf-param-name'}"
-                                               value="${(_csrf.token)!'csrf-token'}"/>
+                                        <input
+                                                type="hidden"
+                                                name="${(_csrf.parameterName)!'csrf-param-name'}"
+                                                value="${(_csrf.token)!'csrf-token'}"/>
                                     </#if>
                                     <input type="number" name="quantity" value="1" min="1" class="form-control w-50">
                                     <button type="submit" class="btn btn-success flex-grow-1">Добавить</button>
